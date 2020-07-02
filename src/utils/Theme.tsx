@@ -31,7 +31,7 @@ export default {
     WHITE: '#FFFFFF',
     BLACK: '#000000',
     OP_WHITE: '#0000001a',
-    BGR: '#E9EBEC',
+    BGR: '#F0F2F2',
     BGR_CARD: "#e6e5e5",
     BGR_CARD_ACTIVE: "#D1FAE0",
     ORANGES: '#FB6340',

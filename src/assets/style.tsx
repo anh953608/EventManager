@@ -3,26 +3,58 @@ import utils from '../utils';
 
 const {width, height} = Dimensions.get('window');
 const styleRoot = StyleSheet.create({
-  v_header_l_c_f: {
-    width: '80%',
-    marginBottom: 35,
-    textAlign: 'center',
-    color: utils.Theme.COLORS.DEFAULT,
-  },
-  v_content_l_c_f: {
+  v_image_bgr: {
     flex: 1,
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
+    width: width,
     height: height - 25,
+  },
+  v_text_header: {
+    width: '100%',
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: utils.Theme.COLORS.PRIMARY_B,
+  },
+  v_header_l_c_f: {
+    height: '15%',
+    width: '100%',
+    borderRadius: 10,
+    textAlign: 'center',
+    justifyContent: 'center',
+    backgroundColor: utils.Theme.COLORS.WHITE
+  },
+  v_body_l_c_f: {
+    height: '85%',
+    width: '100%',
+    paddingTop: 20,
+    alignItems: 'center',
+  },
+  v_content_l_c_f: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 490,
+    width: '85%',
+    borderRadius: 10,
     backgroundColor: utils.Theme.COLORS.BGR,
   },
   v_text_input_l_c_f: {
     height: 50,
-    width: '80%',
+    width: '85%',
     minHeight: 30,
     marginBottom: 30,
     borderRadius: 5,
     backgroundColor: utils.Theme.COLORS.WHITE,
+    shadowColor: utils.Theme.COLORS.DEFAULT,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   v_input_l_c_f: {
     borderBottomWidth: 0,
@@ -33,14 +65,37 @@ const styleRoot = StyleSheet.create({
     color: utils.Theme.COLORS.PRIMARY_B,
   },
   v_btn_l_c_f: {
-    width: '80%',
+    width: '85%',
     marginBottom: 20,
     borderRadius: 5,
+    shadowColor: utils.Theme.COLORS.DEFAULT,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   v_btn_style: {
     backgroundColor: utils.Theme.COLORS.PRIMARY_B,
     borderRadius: 5,
     height: 50,
+  },
+  v_back_left: {
+    top: 0,
+    position: 'absolute',
+    left: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: width,
+  },
+  v_back_title: {
+    width: 100,
+    fontWeight: '700',
+    textAlignVertical: 'center',
+    color: utils.Theme.COLORS.WHITE,
   },
   qr: {
     backgroundColor: utils.Theme.COLORS.BGR,
@@ -142,7 +197,7 @@ const styleRoot = StyleSheet.create({
     backgroundColor: '#E6F7D1',
   },
   v_color_default: {
-    color: utils.Theme.COLORS.DEFAULT,
+    color: utils.Theme.COLORS.WHITE,
   },
   qr_fZ16: {
     fontSize: 16,
@@ -168,11 +223,6 @@ const styleRoot = StyleSheet.create({
   },
   qr_icon: {
     fontSize: 20,
-  },
-  qr_back_left: {
-    top: 30,
-    position: 'absolute',
-    left: 10,
   },
   qr_fl1: {
     flex: 1,
