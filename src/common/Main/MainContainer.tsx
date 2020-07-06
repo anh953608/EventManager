@@ -1,12 +1,15 @@
 import Main from "./Main";
 import { connect } from "react-redux";
 import LoginAction from "../../components/Login/LoginActions";
+import MainAction from "./MainActions";
 
 const loginAction = new LoginAction();
+const mainAction = new MainAction();
 const mapStateToProps = (state: any) => {
   return {
-    data: state.LoginReducer,
-    header: state.HeaderReducer
+    data_login: state.LoginReducer,
+    data_header: state.HeaderReducer,
+    data_main: state.MainReducer
   };
 };
 const mapDispatchToProps = (dispatch: any) => {
@@ -15,7 +18,7 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(loginAction.loginSuccess(data));
     },
     onCloseStandbyScreen: () => {
-      dispatch(loginAction.closeStandbyScreen());
+      dispatch(mainAction.closeStandbyScreen());
     },
   };
 };

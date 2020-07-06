@@ -9,7 +9,7 @@ const styleRoot = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: width,
-    height: height - 25,
+    height: height - 24,
   },
   v_text_header: {
     width: '100%',
@@ -19,7 +19,7 @@ const styleRoot = StyleSheet.create({
     color: utils.Theme.COLORS.PRIMARY_B,
   },
   v_header_l_c_f: {
-    height: '15%',
+    height: 60,
     width: '100%',
     borderRadius: 10,
     textAlign: 'center',
@@ -27,22 +27,19 @@ const styleRoot = StyleSheet.create({
     backgroundColor: utils.Theme.COLORS.WHITE
   },
   v_body_l_c_f: {
-    height: '85%',
     width: '100%',
-    paddingTop: 20,
+    padding: 20,
     alignItems: 'center',
   },
   v_content_l_c_f: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 490,
     width: '85%',
     borderRadius: 10,
     backgroundColor: utils.Theme.COLORS.BGR,
   },
   v_text_input_l_c_f: {
     height: 50,
-    width: '85%',
     minHeight: 30,
     marginBottom: 30,
     borderRadius: 5,
@@ -65,8 +62,7 @@ const styleRoot = StyleSheet.create({
     color: utils.Theme.COLORS.PRIMARY_B,
   },
   v_btn_l_c_f: {
-    width: '85%',
-    marginBottom: 20,
+    width: '100%',
     borderRadius: 5,
     shadowColor: utils.Theme.COLORS.DEFAULT,
     shadowOffset: {
@@ -363,6 +359,9 @@ const styleRoot = StyleSheet.create({
   },
   v_mgr_t30: {
     marginTop: 30,
+  },
+  v_mgr_t20: {
+    marginTop: 20,
   },
   qr_mgr_t10: {
     marginTop: 10,

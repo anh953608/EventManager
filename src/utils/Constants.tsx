@@ -17,5 +17,6 @@ class Constants {
     public static readonly FOOTER_NAV: string = 'FooterNav';
     public static readonly PROFILE: string = 'Profile';
     public static readonly IS_OS: boolean = Platform.OS == "ios" ? true: false;
+    public static readonly SESSION: string = 'aGFzaGlk';
 }
 export default Constants;

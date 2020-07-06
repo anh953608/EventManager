@@ -1,10 +1,9 @@
 import {
-  HANDLE_LOGIN,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  CLOSE_STANDBY_SCREEN,
-  SET_TOKEN,
-  LOGOUT,
+  S01_HANDLE_LOGIN,
+  S01_LOGIN_SUCCESS,
+  S01_LOGIN_FAILURE,
+  S01_SET_TOKEN,
+  S01_LOGOUT,
 } from './type';
 const initData = {
   access_token: '',
@@ -18,13 +17,13 @@ const initData = {
 };
 const LoginReducer = (state = initData, action: any) => {
   switch (action.type) {
-    case HANDLE_LOGIN:
+    case S01_HANDLE_LOGIN:
       return {
         ...state,
         is_loading: true,
         error: false,
       };
-    case SET_TOKEN:
+    case S01_SET_TOKEN:
       return {
         ...state,
         access_token: action.access_token,
@@ -32,7 +31,7 @@ const LoginReducer = (state = initData, action: any) => {
         is_login: false,
         is_loading: true,
       };
-    case LOGIN_SUCCESS:
+    case S01_LOGIN_SUCCESS:
       return {
         ...state,
         username: action.username,
@@ -42,22 +41,17 @@ const LoginReducer = (state = initData, action: any) => {
         is_loading: false,
         error: false,
       };
-    case LOGIN_FAILURE:
+    case S01_LOGIN_FAILURE:
       return {
         ...state,
         is_loading: false,
         error: true,
       };
-    case LOGOUT:
+    case S01_LOGOUT:
       return {
         ...state,
         is_login: false,
         access_token: '',
-      };
-    case CLOSE_STANDBY_SCREEN:
-      return {
-        ...state,
-        is_waiting: false,
       };
     default:
       return state;

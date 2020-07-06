@@ -7,7 +7,22 @@ import {Input, Button, Text, Icon} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const style = StyleSheet.create({
-  v_icon_fingerprint: {
+  v_c_fingerprint: {
+    width: 50,
+    height: 50,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 0,
+    elevation: 2,
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+    borderRadius: 100,
+  },
+  v_b_fingerprint: {
     width: 50,
     height: 50,
     shadowOffset: {
@@ -25,7 +40,7 @@ const style = StyleSheet.create({
 
 interface Props {
   navigation: any;
-  mp_state: any;
+  data_login: any;
   onHandleLogin: any;
 }
 class Login extends Component<Props> {
@@ -113,7 +128,7 @@ class Login extends Component<Props> {
                   />
                 }
                 errorMessage={
-                  this.props.mp_state.error
+                  this.props.data_login.error
                     ? 'The account or password is incorrect'
                     : ''
                 }
@@ -121,7 +136,7 @@ class Login extends Component<Props> {
                 onChangeText={(text) => this.onChangeTxt(text, 2)}
               />
               <Button
-                loading={this.props.mp_state.is_loading}
+                loading={this.props.data_login.is_loading}
                 containerStyle={styleRoot.v_btn_l_c_f}
                 buttonStyle={[styleRoot.v_btn_style]}
                 titleStyle={styleRoot.v_font__w700}
@@ -133,8 +148,8 @@ class Login extends Component<Props> {
               />
               <Button
                 titleStyle={styleRoot.v_color_default}
-                containerStyle={style.v_icon_fingerprint}
-                buttonStyle={style.v_icon_fingerprint}
+                containerStyle={style.v_c_fingerprint}
+                buttonStyle={style.v_b_fingerprint}
                 icon={{
                   size: 40,
                   name: 'fingerprint',
@@ -147,7 +162,6 @@ class Login extends Component<Props> {
                 style={[
                   styleRoot.v_text_c_f,
                   styleRoot.v_mgr_b10,
-                  styleRoot.v_mgr_t30,
                 ]}
                 onPress={() => {
                   this.onRedirectForgotPass();

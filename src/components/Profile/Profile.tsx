@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import {ListItem} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage'
-import styleRoot from '../../assets/style';
 import utils from '../../utils';
 
 const {height} = Dimensions.get('window');
@@ -54,7 +53,7 @@ class Profile extends React.Component<Props> {
       case 0:
         break;
       case 1:
-        await AsyncStorage.removeItem("session");
+        await AsyncStorage.removeItem(utils.Constants.SESSION);
         this.props.onLogout();
         break;
       default:

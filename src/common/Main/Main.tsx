@@ -11,8 +11,6 @@ import utils from '../../utils';
 import Screen from '../../components/screen';
 import StandbyScreen from '../StandbyScreen/StandbyScreen';
 import RqPermission from '../RqPermission';
-import ModalContainer from '../ESModal/ESModalContainer';
-import OverlayContainer from '../Overlay/OverlayContainer';
 
 const STACK = createStackNavigator();
 const FOOTER = createBottomTabNavigator();
@@ -125,8 +123,9 @@ const FooterNav = (props: any) => {
   );
 };
 interface Props {
-  data?: any;
-  header?: any;
+  data_login?: any;
+  data_header?: any;
+  data_main?: any;
   onLoginSuccess?: any;
   onCloseStandbyScreen?: any;
 }
@@ -135,15 +134,15 @@ class Main extends React.Component<Props> {
   constructor(props: any) {
     super(props);
     this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (!this.props || !this.props.data || !this.props.data.is_login) {
+      if (!this.props || !this.props.data_login || !this.props.data_login.is_login) {
         BackHandler.exitApp();
         return true;
       }
       if (
-        this.props.header.header_title === utils.Constants.EVENTS_LIST ||
-        this.props.header.header_title === utils.Constants.NOTICES_LIST
+        this.props.data_header.header_title === utils.Constants.EVENTS_LIST ||
+        this.props.data_header.header_title === utils.Constants.NOTICES_LIST
       ) {
-        Alert.alert('', 'Are you sure you want to exit the application?', [
+        Alert.alert('', 'Are you sure you want to exit the application ?', [
           {
             text: 'Cancel',
             onPress: () => null,
@@ -159,24 +158,23 @@ class Main extends React.Component<Props> {
 
   async loadApp() {
     try {
-      let session = await AsyncStorage.getItem('session');
+      let session = await AsyncStorage.getItem(utils.Constants.SESSION);
       if (session) {
         session = JSON.parse(session);
         this.props.onLoginSuccess(session);
-        this.props.onCloseStandbyScreen();
-      } else {
-        this.props.onCloseStandbyScreen();
       }
-      RqPermission();
+      RqPermission(() => {
+        this.props.onCloseStandbyScreen();
+      });
     } catch (error) {}
   }
 
   render() {
     return (
       <NavigationContainer>
-        {this.props.data.is_waiting ? (
+        {this.props.data_main.flag_standby ? (
           <StandbyScreen />
-        ) : !this.props.data.is_login ? (
+        ) : !this.props.data_login.is_login ? (
           <STACK.Navigator headerMode="none" mode="card">
             <STACK.Screen
               name={utils.Constants.LOGIN}

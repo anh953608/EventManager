@@ -1,6 +1,5 @@
-export const HANDLE_LOGIN = "HANDLE_LOGIN";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const SET_TOKEN = "SET_TOKEN";
-export const LOGOUT = "LOGOUT";
-export const CLOSE_STANDBY_SCREEN = "CLOSE_STANDBY_SCREEN";
+export const S01_HANDLE_LOGIN = "S01_HANDLE_LOGIN";
+export const S01_LOGIN_SUCCESS = "S01_LOGIN_SUCCESS";
+export const S01_LOGIN_FAILURE = "S01_LOGIN_FAILURE";
+export const S01_SET_TOKEN = "S01_SET_TOKEN";
+export const S01_LOGOUT = "S01_LOGOUT";

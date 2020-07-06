@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const loginAction = new LoginAction();
 const mapStateToProps = (state: any) => {
   return {
-    mp_state: state.LoginReducer,
+    data_login: state.LoginReducer,
   };
 };
 const mapDispatchToProps = (dispatch: any) => {

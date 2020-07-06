@@ -1,31 +1,31 @@
-import { HANDLE_LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, CLOSE_STANDBY_SCREEN, LOGOUT } from "./type";
+import {
+  S01_HANDLE_LOGIN,
+  S01_LOGIN_SUCCESS,
+  S01_LOGIN_FAILURE,
+  S01_LOGOUT,
+} from './type';
 class LoginAction {
   handleLogin = (data: any) => {
     return {
-      type: HANDLE_LOGIN,
+      type: S01_HANDLE_LOGIN,
       ...data,
     };
   };
   loginSuccess = (data: any) => {
     return {
-      type: LOGIN_SUCCESS,
+      type: S01_LOGIN_SUCCESS,
       ...data,
     };
   };
   loginFailure = (err: any) => {
     return {
-      type: LOGIN_FAILURE,
+      type: S01_LOGIN_FAILURE,
       error: err,
     };
   };
   logout = () => {
     return {
-      type: LOGOUT,
-    };
-  };
-  closeStandbyScreen = () => {
-    return {
-      type: CLOSE_STANDBY_SCREEN,
+      type: S01_LOGOUT,
     };
   };
 }
