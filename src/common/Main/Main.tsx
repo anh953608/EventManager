@@ -1,5 +1,5 @@
 import React from 'react';
-import {BackHandler, Alert} from 'react-native';
+import {BackHandler, ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,6 +11,7 @@ import utils from '../../utils';
 import Screen from '../../components/screen';
 import StandbyScreen from '../StandbyScreen/StandbyScreen';
 import RqPermission from '../RqPermission';
+import Message from '../Message';
 
 const STACK = createStackNavigator();
 const FOOTER = createBottomTabNavigator();
@@ -97,7 +98,7 @@ const Profile = (prop: any) => {
 };
 const FooterNav = (props: any) => {
   return (
-    <FOOTER.Navigator tabBar={props => <Footer {...props} />}>
+    <FOOTER.Navigator tabBar={(props) => <Footer {...props} />}>
       <FOOTER.Screen
         name={utils.Constants.EVENTS}
         component={Events}
@@ -131,10 +132,16 @@ interface Props {
 }
 class Main extends React.Component<Props> {
   backHandler: any;
+  interval: any;
+  flagBack = false;
   constructor(props: any) {
     super(props);
     this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (!this.props || !this.props.data_login || !this.props.data_login.is_login) {
+      if (
+        !this.props ||
+        !this.props.data_login ||
+        !this.props.data_login.is_login
+      ) {
         BackHandler.exitApp();
         return true;
       }
@@ -142,14 +149,16 @@ class Main extends React.Component<Props> {
         this.props.data_header.header_title === utils.Constants.EVENTS_LIST ||
         this.props.data_header.header_title === utils.Constants.NOTICES_LIST
       ) {
-        Alert.alert('', 'Are you sure you want to exit the application ?', [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
-          },
-          {text: 'YES', onPress: () => BackHandler.exitApp()},
-        ]);
+        if(!this.flagBack) {
+          ToastAndroid.showWithGravity(Message.FI00000, 50, ToastAndroid.CENTER);
+        }
+        setTimeout(() => {
+          this.flagBack = false;
+        }, 70)
+        if (this.flagBack) {
+          BackHandler.exitApp();
+        }
+        this.flagBack = true;
       }
       return true;
     });
@@ -159,11 +168,11 @@ class Main extends React.Component<Props> {
   async loadApp() {
     try {
       let session = await AsyncStorage.getItem(utils.Constants.SESSION);
-      if (session) {
-        session = JSON.parse(session);
-        this.props.onLoginSuccess(session);
-      }
       RqPermission(() => {
+        if (session) {
+          session = JSON.parse(session);
+          this.props.onLoginSuccess(session);
+        }
         this.props.onCloseStandbyScreen();
       });
     } catch (error) {}
